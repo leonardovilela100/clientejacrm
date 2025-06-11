@@ -16,13 +16,6 @@ Este documento descreve uma possível abordagem para integrar mensagens do Whats
 
 Adicione a dependência do cliente HTTP em `pom.xml` caso ainda não esteja presente:
 
-```xml
-<dependency>
-    <groupId>io.quarkus</groupId>
-    <artifactId>quarkus-rest-client</artifactId>
-</dependency>
-```
-
 (Para integrar com o Twilio utilize a dependência `com.twilio.sdk`.)
 
 Crie uma seção de configuração em `application.properties` para a API do WhatsApp:
