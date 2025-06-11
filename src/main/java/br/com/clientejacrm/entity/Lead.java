@@ -6,6 +6,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,9 +31,12 @@ public class Lead {
     private String nome;
     private String email;
     private String telefone;
-    private String origem; // ex: Instagram, Indicação, Site
 
-    private String status; // NOVO, EM_CONTATO, PROPOSTA, FECHADO, PERDIDO
+    @Enumerated(EnumType.STRING)
+    private Origem origem; // ex: Instagram, Indicação, Site
+
+    @Enumerated(EnumType.STRING)
+    private Status status; // NOVO, EM_CONTATO, PROPOSTA, FECHADO, PERDIDO
 
     private LocalDateTime dataCriacao;
     private LocalDateTime proximoFollowUp;
