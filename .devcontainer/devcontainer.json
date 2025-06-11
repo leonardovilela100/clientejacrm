@@ -1,0 +1,9 @@
+{
+  "name": "clientejacrm-dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace/clientejacrm",
+  "runServices": ["db"],
+  "forwardPorts": [8080, 5432],
+  "postCreateCommand": "chmod +x mvnw"
+}

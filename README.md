@@ -60,3 +60,24 @@ If you want to learn more about building native executables, please consult <htt
 Easily start your REST Web Services
 
 [Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+
+## Development container
+
+This repository contains a `.devcontainer` folder used by Codex to start the
+development environment. When the container is launched a PostgreSQL service is
+started automatically using the credentials from
+`src/main/resources/application.properties`:
+
+```
+database:     clientejacrm
+username:     postgres
+password:     senha123
+```
+
+To start the environment manually you can run:
+
+```bash
+docker compose -f .devcontainer/docker-compose.yml up -d
+```
+
+The API will be accessible on port `8080` and the database on `5432`.
