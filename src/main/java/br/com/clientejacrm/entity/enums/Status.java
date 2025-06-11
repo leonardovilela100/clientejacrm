@@ -1,4 +1,4 @@
-package br.com.clientejacrm.entity;
+package br.com.clientejacrm.entity.enums;
 
 public enum Status {
     NOVO,

@@ -1,7 +1,7 @@
 package br.com.clientejacrm.resource;
 
-import br.com.clientejacrm.entity.Interacao;
-import br.com.clientejacrm.entity.Lead;
+import br.com.clientejacrm.entity.orm.Interacao;
+import br.com.clientejacrm.entity.orm.Lead;
 import br.com.clientejacrm.repository.InteracaoRepository;
 import br.com.clientejacrm.repository.LeadRepository;
 import jakarta.inject.Inject;
@@ -34,7 +34,9 @@ public class LeadResource {
     @Inject
     InteracaoRepository interacaoRepository;
 
+
     @GET
+    @Produces(MediaType.APPLICATION_JSON)
     public List<Lead> list() {
         return leadRepository.listAll();
     }
@@ -49,10 +51,14 @@ public class LeadResource {
         return lead;
     }
 
+
     @POST
     @Transactional
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Lead lead, @Context UriInfo uriInfo) {
+        System.out.println("Chegou ?");
         lead.setDataCriacao(LocalDateTime.now());
+        lead.setProximoFollowUp(LocalDateTime.now());
         leadRepository.persist(lead);
         URI uri = uriInfo.getAbsolutePathBuilder().path(lead.getId().toString()).build();
         return Response.created(uri).entity(lead).build();
