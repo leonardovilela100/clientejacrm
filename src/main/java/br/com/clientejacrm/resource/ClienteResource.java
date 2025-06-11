@@ -1,8 +1,8 @@
 package br.com.clientejacrm.resource;
 
 import br.com.clientejacrm.entity.enums.TipoContato;
-import br.com.clientejacrm.entity.orm.Contato;
-import br.com.clientejacrm.service.ContatoService;
+import br.com.clientejacrm.entity.orm.Cliente;
+import br.com.clientejacrm.service.ClienteService;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
@@ -13,41 +13,41 @@ import jakarta.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-@Path("/contatos")
+@Path("/clientes")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class ContatoResource {
+public class ClienteResource {
 
     @Inject
-    ContatoService contatoService;
+    ClienteService clienteService;
 
     @GET
-    public List<Contato> list(@QueryParam("tipo") TipoContato tipo) {
-        return contatoService.listAll(tipo);
+    public List<Cliente> list(@QueryParam("tipo") TipoContato tipo) {
+        return clienteService.listAll(tipo);
     }
 
     @GET
     @Path("/{id}")
-    public Contato get(@PathParam("id") Long id) {
-        return contatoService.findById(id);
+    public Cliente get(@PathParam("id") Long id) {
+        return clienteService.findById(id);
     }
 
     @POST
-    public Response create(Contato contato, @Context UriInfo uriInfo) {
-        Contato created = contatoService.create(contato);
+    public Response create(Cliente cliente, @Context UriInfo uriInfo) {
+        Cliente created = clienteService.create(cliente);
         URI uri = uriInfo.getAbsolutePathBuilder().path(created.getId().toString()).build();
         return Response.created(uri).entity(created).build();
     }
 
     @PUT
     @Path("/{id}")
-    public Contato update(@PathParam("id") Long id, Contato updated) {
-        return contatoService.update(id, updated);
+    public Cliente update(@PathParam("id") Long id, Cliente updated) {
+        return clienteService.update(id, updated);
     }
 
     @DELETE
     @Path("/{id}")
     public void delete(@PathParam("id") Long id) {
-        contatoService.delete(id);
+        clienteService.delete(id);
     }
 }
