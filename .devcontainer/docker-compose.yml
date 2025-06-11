@@ -1,0 +1,21 @@
+version: '3'
+services:
+  app:
+    image: mcr.microsoft.com/devcontainers/java:0-21
+    volumes:
+      - ..:/workspace/clientejacrm:cached
+    networks:
+      - dev
+  db:
+    image: postgres:16
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: clientejacrm
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: senha123
+    ports:
+      - "5432:5432"
+    networks:
+      - dev
+networks:
+  dev:
