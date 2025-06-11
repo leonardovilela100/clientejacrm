@@ -2,10 +2,8 @@ package br.com.clientejacrm.resource;
 
 import br.com.clientejacrm.entity.orm.Interacao;
 import br.com.clientejacrm.entity.orm.Lead;
-import br.com.clientejacrm.repository.InteracaoRepository;
-import br.com.clientejacrm.repository.LeadRepository;
+import br.com.clientejacrm.service.LeadService;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.DELETE;
@@ -18,9 +16,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.core.Context;
-import jakarta.ws.rs.NotFoundException;
 import java.net.URI;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Path("/leads")
@@ -29,89 +25,51 @@ import java.util.List;
 public class LeadResource {
 
     @Inject
-    LeadRepository leadRepository;
-
-    @Inject
-    InteracaoRepository interacaoRepository;
+    LeadService leadService;
 
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<Lead> list() {
-        return leadRepository.listAll();
+        return leadService.listAll();
     }
 
     @GET
     @Path("/{id}")
     public Lead get(@PathParam("id") Long id) {
-        Lead lead = leadRepository.findById(id);
-        if (lead == null) {
-            throw new NotFoundException();
-        }
-        return lead;
+        return leadService.findById(id);
     }
 
 
     @POST
-    @Transactional
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Lead lead, @Context UriInfo uriInfo) {
-        System.out.println("Chegou ?");
-        lead.setDataCriacao(LocalDateTime.now());
-        lead.setProximoFollowUp(LocalDateTime.now());
-        leadRepository.persist(lead);
-        URI uri = uriInfo.getAbsolutePathBuilder().path(lead.getId().toString()).build();
-        return Response.created(uri).entity(lead).build();
+        Lead created = leadService.create(lead);
+        URI uri = uriInfo.getAbsolutePathBuilder().path(created.getId().toString()).build();
+        return Response.created(uri).entity(created).build();
     }
 
     @PUT
     @Path("/{id}")
-    @Transactional
     public Lead update(@PathParam("id") Long id, Lead updated) {
-        Lead lead = leadRepository.findById(id);
-        if (lead == null) {
-            throw new NotFoundException();
-        }
-        lead.setNome(updated.getNome());
-        lead.setEmail(updated.getEmail());
-        lead.setTelefone(updated.getTelefone());
-        lead.setOrigem(updated.getOrigem());
-        lead.setStatus(updated.getStatus());
-        lead.setProximoFollowUp(updated.getProximoFollowUp());
-        return lead;
+        return leadService.update(id, updated);
     }
 
     @DELETE
     @Path("/{id}")
-    @Transactional
     public void delete(@PathParam("id") Long id) {
-        boolean deleted = leadRepository.deleteById(id);
-        if (!deleted) {
-            throw new NotFoundException();
-        }
+        leadService.delete(id);
     }
 
     @POST
     @Path("/{id}/interacoes")
-    @Transactional
     public Interacao addInteracao(@PathParam("id") Long id, Interacao interacao) {
-        Lead lead = leadRepository.findById(id);
-        if (lead == null) {
-            throw new NotFoundException();
-        }
-        interacao.setLead(lead);
-        interacao.setDataHora(LocalDateTime.now());
-        interacaoRepository.persist(interacao);
-        return interacao;
+        return leadService.addInteracao(id, interacao);
     }
 
     @GET
     @Path("/{id}/interacoes")
     public List<Interacao> listInteracoes(@PathParam("id") Long id) {
-        Lead lead = leadRepository.findById(id);
-        if (lead == null) {
-            throw new NotFoundException();
-        }
-        return lead.getInteracoes();
+        return leadService.listInteracoes(id);
     }
 }
