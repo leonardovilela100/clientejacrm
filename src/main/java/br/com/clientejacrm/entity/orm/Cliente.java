@@ -39,4 +39,10 @@ public class Cliente {
 
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
+
+    @Column(name = "ultimo_contato")
+    private LocalDateTime ultimoContato;
+
+    @Column(name = "ultima_compra")
+    private LocalDateTime ultimaCompra;
 }
