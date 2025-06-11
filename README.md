@@ -1,72 +1,68 @@
 # clientejacrm-api
 
-This project uses Quarkus, the Supersonic Subatomic Java Framework.
+Este projeto utiliza o Quarkus, o framework Java Supersônico Subatômico.
 
-If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
+Se quiser saber mais sobre o Quarkus, visite <https://quarkus.io/>.
 
-## Running the application in dev mode
+## Executando a aplicação em modo dev
 
-You can run your application in dev mode that enables live coding using:
+Você pode executar a aplicação em modo dev, o que permite live coding, com:
 
 ```shell script
 ./mvnw quarkus:dev
 ```
 
-> **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
+> **_NOTA:_** O Quarkus agora possui uma Dev UI, disponível apenas em modo dev em <http://localhost:8080/q/dev/>.
 
-## Packaging and running the application
+## Empacotando e executando a aplicação
 
-The application can be packaged using:
+A aplicação pode ser empacotada usando:
 
 ```shell script
 ./mvnw package
 ```
 
-It produces the `quarkus-run.jar` file in the `target/quarkus-app/` directory.
-Be aware that it’s not an _über-jar_ as the dependencies are copied into the `target/quarkus-app/lib/` directory.
+Isso gera o arquivo `quarkus-run.jar` no diretório `target/quarkus-app/`. Note que não é um _über-jar_, pois as dependências são copiadas para `target/quarkus-app/lib/`.
 
-The application is now runnable using `java -jar target/quarkus-app/quarkus-run.jar`.
+A aplicação pode ser executada com `java -jar target/quarkus-app/quarkus-run.jar`.
 
-If you want to build an _über-jar_, execute the following command:
+Se você quiser construir um _über-jar_, execute o seguinte comando:
 
 ```shell script
 ./mvnw package -Dquarkus.package.jar.type=uber-jar
 ```
 
-The application, packaged as an _über-jar_, is now runnable using `java -jar target/*-runner.jar`.
+A aplicação empacotada como _über-jar_ pode ser executada com `java -jar target/*-runner.jar`.
 
-## Creating a native executable
+## Criando um executável nativo
 
-You can create a native executable using:
+Você pode criar um executável nativo usando:
 
 ```shell script
 ./mvnw package -Dnative
 ```
 
-Or, if you don't have GraalVM installed, you can run the native executable build in a container using:
+Ou, se não tiver o GraalVM instalado, é possível executar a compilação nativa em um contêiner:
 
 ```shell script
 ./mvnw package -Dnative -Dquarkus.native.container-build=true
 ```
 
-You can then execute your native executable with: `./target/clientejacrm-api-1.0.0-SNAPSHOT-runner`
+Em seguida, execute o binário gerado com: `./target/clientejacrm-api-1.0.0-SNAPSHOT-runner`
 
-If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
+Se desejar saber mais sobre a criação de executáveis nativos, consulte <https://quarkus.io/guides/maven-tooling>.
 
-## Provided Code
+## Código fornecido
 
 ### REST
 
-Easily start your REST Web Services
+Inicie facilmente seus Web Services REST
 
-[Related guide section...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
+[Seção relacionada do guia...](https://quarkus.io/guides/getting-started-reactive#reactive-jax-rs-resources)
 
-## Development container
+## Contêiner de desenvolvimento
 
-This repository contains a `.devcontainer` folder used by Codex to start the
-development environment. When the container is launched a PostgreSQL service is
-started automatically using the credentials from
-`src/main/resources/application.properties`:
+Este repositório contém uma pasta `.devcontainer` usada pelo Codex para iniciar o ambiente de desenvolvimento. Ao iniciar o contêiner, um serviço PostgreSQL é iniciado automaticamente utilizando as credenciais de `src/main/resources/application.properties`:
 
 ```
 database:     clientejacrm
@@ -74,10 +70,10 @@ username:     postgres
 password:     senha123
 ```
 
-To start the environment manually you can run:
+Para iniciar o ambiente manualmente, execute:
 
 ```bash
 docker compose -f .devcontainer/docker-compose.yml up -d
 ```
 
-The API will be accessible on port `8080` and the database on `5432`.
+A API estará disponível na porta `8080` e o banco de dados na `5432`.
