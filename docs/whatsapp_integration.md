@@ -1,20 +1,20 @@
-# WhatsApp Integration Guide
+# Guia de Integração com WhatsApp
 
-This document outlines a possible approach to integrate WhatsApp messaging with the Quarkus back-end. The guide focuses on using the official WhatsApp Cloud API from Meta, but the same concepts apply if using a provider such as Twilio.
+Este documento descreve uma possível abordagem para integrar mensagens do WhatsApp com o back-end em Quarkus. O guia foca no uso da API oficial WhatsApp Cloud da Meta, mas os mesmos conceitos se aplicam se você utilizar um provedor como o Twilio.
 
-## Prerequisites
+## Pré-requisitos
 
-1. A Facebook developer account with a registered Meta business application.
-2. Access to the [WhatsApp Business Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api).
-3. A phone number registered with the WhatsApp Business API.
-4. The following information from Meta:
-   - **Phone Number ID** – identifies the business phone number.
+1. Conta de desenvolvedor do Facebook com um aplicativo comercial registrado.
+2. Acesso à [WhatsApp Business Cloud API](https://developers.facebook.com/docs/whatsapp/cloud-api).
+3. Um número de telefone registrado na API do WhatsApp Business.
+4. As seguintes informações fornecidas pela Meta:
+   - **Phone Number ID** – identifica o número de telefone comercial.
    - **WhatsApp Business Account ID**.
-   - **Permanent Access Token** with the `whatsapp_business_messaging` permission.
+   - **Permanent Access Token** com a permissão `whatsapp_business_messaging`.
 
-## Quarkus Setup
+## Configuração do Quarkus
 
-Add the required HTTP client dependency to `pom.xml` if not present:
+Adicione a dependência do cliente HTTP em `pom.xml` caso ainda não esteja presente:
 
 ```xml
 <dependency>
@@ -23,9 +23,9 @@ Add the required HTTP client dependency to `pom.xml` if not present:
 </dependency>
 ```
 
-(For Twilio integration use the `com.twilio.sdk` dependency instead.)
+(Para integrar com o Twilio utilize a dependência `com.twilio.sdk`.)
 
-Create a configuration section in `application.properties` for the WhatsApp API:
+Crie uma seção de configuração em `application.properties` para a API do WhatsApp:
 
 ```properties
 whatsapp.base-url=https://graph.facebook.com/v18.0/
@@ -33,9 +33,9 @@ whatsapp.token=<PERMANENT_ACCESS_TOKEN>
 whatsapp.phone-id=<PHONE_NUMBER_ID>
 ```
 
-## REST Client Interface
+## Interface do Cliente REST
 
-Define a REST client to call the Cloud API:
+Defina um cliente REST para chamar a Cloud API:
 
 ```java
 package br.com.clientejacrm.whatsapp;
@@ -59,11 +59,11 @@ public interface WhatsAppClient {
 }
 ```
 
-Where `MessageRequest` is a small DTO representing the WhatsApp payload.
+`MessageRequest` é um pequeno DTO que representa o payload do WhatsApp.
 
-## Service Layer
+## Camada de Serviço
 
-Create a service that formats the message body and calls the REST client:
+Crie um serviço que formata o corpo da mensagem e chama o cliente REST:
 
 ```java
 package br.com.clientejacrm.whatsapp;
@@ -86,9 +86,9 @@ public class WhatsAppService {
 }
 ```
 
-## Usage
+## Uso
 
-Inject `WhatsAppService` into existing resources or services. For example, sending a welcome message when a new lead is created:
+Injete `WhatsAppService` em recursos ou serviços existentes. Por exemplo, enviar uma mensagem de boas-vindas quando um novo lead é criado:
 
 ```java
 @Inject
@@ -103,10 +103,9 @@ public Lead create(Lead lead) {
 }
 ```
 
-## Additional Notes
+## Notas adicionais
 
-- Ensure the access token and phone number ID are stored securely (e.g., environment variables or a secrets manager).
-- The API uses a versioned base URL; adjust `v18.0` in the properties if Meta releases a new version.
-- For production, implement error handling and consider rate limits or webhook callbacks.
-- If using Twilio, the overall structure is similar, but the client and credentials will come from the Twilio SDK.
-
+- Garanta que o token de acesso e o phone number ID sejam armazenados de forma segura (por exemplo, variáveis de ambiente ou um gerenciador de segredos).
+- A API usa uma URL base versionada; ajuste `v18.0` nas propriedades caso a Meta lance uma nova versão.
+- Para produção, implemente tratamento de erros e considere limites de taxa ou callbacks de webhook.
+- Se estiver utilizando o Twilio, a estrutura geral é semelhante, mas o cliente e as credenciais virão do SDK do Twilio.
