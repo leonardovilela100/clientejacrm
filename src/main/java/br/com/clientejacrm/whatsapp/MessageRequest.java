@@ -9,19 +9,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class MessageRequest {
 
-    private String messaging_product = "whatsapp";
-    private String to;
-    private String type = "text";
-    private Text text;
+    private String number;
+    private String message;
 
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public static class Text {
-        private String body;
-    }
-
-    public static MessageRequest text(String to, String body) {
-        return new MessageRequest("whatsapp", to, "text", new Text(body));
+    public static MessageRequest text(String number, String message) {
+        return new MessageRequest(number, message);
     }
 }
