@@ -7,7 +7,7 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@Path("/whatsapp/")
+@Path("/whatsapp")
 @RegisterRestClient(configKey = "wppconnect")
 public interface WhatsAppClient {
 
