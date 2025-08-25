@@ -44,13 +44,13 @@
 
         <dependency>
             <groupId>io.quarkus</groupId>
-            <artifactId>quarkus-rest-client-reactive</artifactId>
             <version>3.14.4</version>
             <artifactId>quarkus-rest-client</artifactId>
         </dependency>
 
         <dependency>
             <groupId>io.quarkus</groupId>
+
             <artifactId>quarkus-rest-client-jackson</artifactId>
         </dependency>
 
