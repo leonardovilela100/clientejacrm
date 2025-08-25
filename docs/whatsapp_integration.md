@@ -9,7 +9,7 @@ Este guia descreve como utilizar o servidor **wppconnect-serve** para enviar men
 2. Defina em `application.properties` o endereço do serviço:
 
 ```properties
-wppconnect.base-url=http://localhost:3030
+wppconnect.base-url=http://localhost:3000
 quarkus.rest-client.wppconnect.url=${wppconnect.base-url}
 ```
 

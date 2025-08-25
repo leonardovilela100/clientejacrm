@@ -7,12 +7,11 @@ import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import org.eclipse.microprofile.rest.client.inject.RegisterRestClient;
 
-@Path("/whatsapp")
 @RegisterRestClient(configKey = "wppconnect")
 public interface WhatsAppClient {
 
     @POST
-    @Path("send-message")
+    @Path("/send-message")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     void sendMessage(MessageRequest request);
