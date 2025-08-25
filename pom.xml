@@ -44,7 +44,6 @@
 
         <dependency>
             <groupId>io.quarkus</groupId>
-            <version>3.14.4</version>
             <artifactId>quarkus-rest-client</artifactId>
         </dependency>
 
