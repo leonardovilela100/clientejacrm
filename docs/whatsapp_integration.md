@@ -4,7 +4,7 @@ Este guia descreve como utilizar o servidor **wppconnect-serve** para enviar men
 
 ## Configuração
 
-1. Mantenha a dependência `quarkus-rest-client-reactive` no `pom.xml`.
+1. Adicione as dependências `quarkus-rest-client` e `quarkus-rest-client-jackson` ao `pom.xml`.
 2. Defina em `application.properties` o endereço do serviço:
 
 ```properties
