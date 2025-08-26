@@ -77,3 +77,16 @@ docker compose -f .devcontainer/docker-compose.yml up -d
 ```
 
 A API estará disponível na porta `8080` e o banco de dados na `5432`.
+
+## Integração com Gemini AI
+
+Para habilitar as chamadas à inteligência artificial do Gemini, defina a
+variável de ambiente `GEMINI_API_KEY` com sua chave de API antes de
+executar a aplicação:
+
+```bash
+export GEMINI_API_KEY=SUAS_CHAVE_AQUI
+```
+
+Com a aplicação em execução, é possível gerar texto acessando o endpoint
+`/gemini?prompt=SEU_PROMPT`.
