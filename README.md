@@ -90,3 +90,6 @@ export GEMINI_API_KEY=SUAS_CHAVE_AQUI
 
 Com a aplicação em execução, é possível gerar texto acessando o endpoint
 `/gemini?prompt=SEU_PROMPT`.
+
+Se preferir, também é possível omitir o nome do parâmetro e enviar somente o
+texto, por exemplo: `/gemini?Olá%20tudo%20bem%3F`.
