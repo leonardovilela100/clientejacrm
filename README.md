@@ -93,3 +93,19 @@ Com a aplicação em execução, é possível gerar texto acessando o endpoint
 
 Se preferir, também é possível omitir o nome do parâmetro e enviar somente o
 texto, por exemplo: `/gemini?Olá%20tudo%20bem%3F`.
+
+## Integração com OpenRouter
+
+Para habilitar as chamadas à API do OpenRouter, defina a
+variável de ambiente `OPENROUTER_API_KEY` com sua chave antes de
+executar a aplicação:
+
+```bash
+export OPENROUTER_API_KEY=SUAS_CHAVE_AQUI
+```
+
+Com a aplicação em execução, é possível gerar texto acessando o endpoint
+`/openrouter?prompt=SEU_PROMPT`.
+
+Assim como no Gemini, também é possível omitir o nome do parâmetro e enviar
+somente o texto, por exemplo: `/openrouter?Olá%20tudo%20bem%3F`.
