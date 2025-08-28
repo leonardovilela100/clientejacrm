@@ -38,7 +38,8 @@ public class LeadService {
     }
 
     @Transactional
-    public Lead create(Lead lead) {
+    public Lead create(Lead lead, String  token) {
+        System.out.println(token);
         lead.setDataCriacao(LocalDateTime.now());
         lead.setProximoFollowUp(LocalDateTime.now());
         leadRepository.persist(lead);

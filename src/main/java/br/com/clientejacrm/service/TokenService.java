@@ -12,20 +12,13 @@ public class TokenService {
 
     public String generateToken(Usuario usuario) {
         Instant now = Instant.now();
-        String token = Jwt.subject(usuario.getId().toString())
+        return Jwt.subject(usuario.getId().toString())
                 .issuedAt(now)
                 .expiresAt(now.plus(Duration.ofHours(24)))
                 .sign();
-        return token;
+
     }
-/*
-    public String generateToken(Usuario usuario) {
-        Instant now = Instant.now();
-        String token = Jwt.subject(usuario.getId().toString())
-                .issuedAt(now)
-                .expiresAt(now.plus(Duration.ofHours(24)))
-                .sign();
-        return "Bearer" + token;
-    }
-    */
+
+
+
 }

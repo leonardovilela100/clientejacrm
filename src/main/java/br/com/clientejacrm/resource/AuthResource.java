@@ -1,6 +1,8 @@
 package br.com.clientejacrm.resource;
 
 
+import br.com.clientejacrm.dto.LoginRequestDto;
+import br.com.clientejacrm.dto.TokenResponseDto;
 import br.com.clientejacrm.entity.orm.Usuario;
 import br.com.clientejacrm.service.TokenService;
 import br.com.clientejacrm.service.UsuarioService;
@@ -23,28 +25,16 @@ public class AuthResource {
     @Inject
     TokenService tokenService;
 
-    public static class LoginRequest {
-        public String email;
-        public String senha;
-    }
-
-    public static class TokenResponse {
-        public String token;
-
-        public TokenResponse(String token) {
-            this.token = token;
-        }
-    }
 
     @POST
     @Path("/login")
-    public Response login(LoginRequest request) {
+    public Response login(LoginRequestDto request) {
         Usuario usuario = usuarioService.authenticate(request.email, request.senha);
         if (usuario == null) {
             return Response.status(Response.Status.UNAUTHORIZED).build();
         }
         String token = tokenService.generateToken(usuario);
-        return Response.ok(new TokenResponse(token)).build();
+        return Response.ok(new TokenResponseDto(token)).build();
     }
 
 }

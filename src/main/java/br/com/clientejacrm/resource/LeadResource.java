@@ -16,6 +16,9 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
 import jakarta.ws.rs.core.Context;
+import org.eclipse.microprofile.jwt.Claims;
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import java.net.URI;
 import java.util.List;
 
@@ -26,6 +29,9 @@ public class LeadResource {
 
     @Inject
     LeadService leadService;
+
+    @Inject
+    JsonWebToken jwt;
 
 
     @GET
@@ -44,7 +50,8 @@ public class LeadResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Lead lead, @Context UriInfo uriInfo) {
-        Lead created = leadService.create(lead);
+      //  String token = jwt.getClaim(Claims.upn.name());
+        Lead created = leadService.create(lead, "token");
         URI uri = uriInfo.getAbsolutePathBuilder().path(created.getId().toString()).build();
         return Response.created(uri).entity(created).build();
     }

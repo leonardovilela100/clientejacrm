@@ -35,35 +35,4 @@ public class Interacao {
     @ManyToOne
     private Lead lead;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public LocalDateTime getDataHora() {
-        return dataHora;
-    }
-
-    public void setDataHora(LocalDateTime dataHora) {
-        this.dataHora = dataHora;
-    }
-
-    public Lead getLead() {
-        return lead;
-    }
-
-    public void setLead(Lead lead) {
-        this.lead = lead;
-    }
 }

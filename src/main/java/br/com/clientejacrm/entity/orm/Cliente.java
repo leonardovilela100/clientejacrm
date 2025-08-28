@@ -49,75 +49,9 @@ public class Cliente {
     @Column(name = "ultima_compra")
     private LocalDateTime ultimaCompra;
 
-    public Long getId() {
-        return id;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id", nullable = false)
+    private Usuario usuario;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public TipoContato getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(TipoContato tipo) {
-        this.tipo = tipo;
-    }
-
-    public CanalContato getCanalPreferencial() {
-        return canalPreferencial;
-    }
-
-    public void setCanalPreferencial(CanalContato canalPreferencial) {
-        this.canalPreferencial = canalPreferencial;
-    }
-
-    public LocalDateTime getDataCriacao() {
-        return dataCriacao;
-    }
-
-    public void setDataCriacao(LocalDateTime dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
-    public LocalDateTime getUltimoContato() {
-        return ultimoContato;
-    }
-
-    public void setUltimoContato(LocalDateTime ultimoContato) {
-        this.ultimoContato = ultimoContato;
-    }
-
-    public LocalDateTime getUltimaCompra() {
-        return ultimaCompra;
-    }
-
-    public void setUltimaCompra(LocalDateTime ultimaCompra) {
-        this.ultimaCompra = ultimaCompra;
-    }
 }
