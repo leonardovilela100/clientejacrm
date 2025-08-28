@@ -1,10 +1,8 @@
 package br.com.clientejacrm.resource;
 
-import br.com.clientejacrm.entity.enums.TipoContato;
-import br.com.clientejacrm.entity.orm.Cliente;
 import br.com.clientejacrm.entity.orm.Usuario;
-import br.com.clientejacrm.service.ClienteService;
 import br.com.clientejacrm.service.UsuarioService;
+import io.quarkus.security.Authenticated;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -14,11 +12,11 @@ import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.UriInfo;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import java.net.URI;
 import java.util.List;
@@ -26,10 +24,21 @@ import java.util.List;
 @Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Authenticated
 public class UsuarioResource {
 
     @Inject
     UsuarioService usuarioService;
+
+    @Inject
+    JsonWebToken jwt;
+
+    @GET
+    @Path("/me")
+    public Usuario me() {
+        Long id = Long.parseLong(jwt.getSubject());
+        return usuarioService.findById(id);
+    }
 
     @GET
     public List<Usuario> list() {

@@ -9,6 +9,8 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.List;
 
 @ApplicationScoped
@@ -28,6 +30,21 @@ public class UsuarioService {
         }
         return usuario;
     }
+
+    public Usuario findByEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
+
+    public Usuario authenticate(String email, String senha) {
+        Usuario usuario = findByEmail(email);
+        if (usuario == null) {
+            return null;
+        }
+        String hash = Base64.getEncoder().encodeToString(senha.getBytes(StandardCharsets.UTF_8));
+        return hash.equals(usuario.getSenhaHash()) ? usuario : null;
+    }
+
 
     @Transactional
     public Usuario create(Usuario usuario) {
