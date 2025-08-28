@@ -38,8 +38,14 @@ public class Usuario {
     @Column(name = "nome",  nullable = false)
     private String nome;
 
-    @Column(name = "email",  nullable = false)
+    @Column(name = "email",  nullable = false, unique = true)
     private String email;
+
+    @Column(name = "telefone", length = 30)
+    private String telefone;
+
+    @Column(name = "email_verificado")
+    private boolean emailVerificado;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @Transient
@@ -48,12 +54,6 @@ public class Usuario {
     @JsonIgnore
     @Column(name = "senha_hash", nullable = false, length = 255)
     private String senhaHash;
-
-    @Column(name = "telefone", length = 30)
-    private String telefone;
-
-    @Column(name = "email_verificado")
-    private boolean emailVerificado;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)

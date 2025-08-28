@@ -55,6 +55,7 @@ public class UsuarioResource {
     }
 
     @POST
+    @PermitAll
     public Response create(Usuario usuario, @Context UriInfo uriInfo) {
         Usuario created = usuarioService.create(usuario);
         URI uri = uriInfo.getAbsolutePathBuilder().path(created.getId().toString()).build();
