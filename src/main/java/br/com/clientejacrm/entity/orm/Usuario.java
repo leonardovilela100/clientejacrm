@@ -1,16 +1,26 @@
 package br.com.clientejacrm.entity.orm;
 
+import br.com.clientejacrm.entity.enums.StatusUsuario;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.Instant;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -27,38 +37,28 @@ public class Usuario {
     @Column(name = "email",  nullable = false)
     private String email;
 
-    @Column(name = "senha",  nullable = false)
-    private String senha;
+    @JsonIgnore
+    @Column(name = "senha_hash", nullable = false, length = 255)
+    private String senhaHash;
 
-    public Long getId() {
-        return id;
-    }
+    @Column(name = "telefone", length = 30)
+    private String telefone;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    @Column(name = "email_verificado")
+    private boolean emailVerificado;
 
-    public String getNome() {
-        return nome;
-    }
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status", nullable = false, length = 20)
+    private StatusUsuario status;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
 
-    public String getEmail() {
-        return email;
-    }
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private Instant updatedAt;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 
-    public String getSenha() {
-        return senha;
-    }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }
