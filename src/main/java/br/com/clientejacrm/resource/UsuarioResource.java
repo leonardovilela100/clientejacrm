@@ -34,7 +34,7 @@ public class UsuarioResource {
     JsonWebToken jwt;
 
     @GET
-    @Path("/me")
+    @Path("/userLogged")
     public Usuario me() {
         Long id = Long.parseLong(jwt.getSubject());
         return usuarioService.findById(id);

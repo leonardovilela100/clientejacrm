@@ -8,6 +8,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -18,6 +19,9 @@ public class UsuarioService {
 
     @Inject
     UsuarioRepository usuarioRepository;
+
+    @Inject
+    JsonWebToken jwt;
 
     public List<Usuario> listAll() {
         return usuarioRepository.listAll();
@@ -73,5 +77,10 @@ public class UsuarioService {
         if (!deleted) {
             throw new NotFoundException();
         }
+    }
+
+    public Usuario getUsuarioLogado() {
+        Long id = Long.parseLong(jwt.getSubject());
+        return usuarioRepository.findById(id);
     }
 }
