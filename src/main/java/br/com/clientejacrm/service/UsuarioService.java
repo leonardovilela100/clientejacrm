@@ -44,8 +44,9 @@ public class UsuarioService {
         }
         usuario.setNome(updated.getNome());
         usuario.setEmail(updated.getEmail());
-        usuario.setSenhaHash(updated.getSenhaHash());
-
+        if (updated.getSenha() != null) {
+            usuario.setSenha(updated.getSenha());
+        }
         return usuario;
     }
 
