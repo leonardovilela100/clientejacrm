@@ -3,6 +3,7 @@ package br.com.clientejacrm.resource;
 import br.com.clientejacrm.entity.orm.Usuario;
 import br.com.clientejacrm.service.UsuarioService;
 import io.quarkus.security.Authenticated;
+import jakarta.annotation.security.PermitAll;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
@@ -24,7 +25,6 @@ import java.util.List;
 @Path("/usuarios")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Authenticated
 public class UsuarioResource {
 
     @Inject
@@ -35,18 +35,21 @@ public class UsuarioResource {
 
     @GET
     @Path("/userLogged")
+    @Authenticated
     public Usuario me() {
         Long id = Long.parseLong(jwt.getSubject());
         return usuarioService.findById(id);
     }
 
     @GET
+    @Authenticated
     public List<Usuario> list() {
         return usuarioService.listAll();
     }
 
     @GET
     @Path("/{id}")
+    @Authenticated
     public Usuario get(@PathParam("id") Long id) {
         return usuarioService.findById(id);
     }
@@ -60,12 +63,14 @@ public class UsuarioResource {
 
     @PUT
     @Path("/{id}")
+    @Authenticated
     public Usuario update(@PathParam("id") Long id, Usuario updated) {
         return usuarioService.update(id, updated);
     }
 
     @DELETE
     @Path("/{id}")
+    @Authenticated
     public void delete(@PathParam("id") Long id) {
         usuarioService.delete(id);
     }
