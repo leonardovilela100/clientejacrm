@@ -2,6 +2,7 @@ package br.com.clientejacrm.service;
 
 import br.com.clientejacrm.entity.orm.Interacao;
 import br.com.clientejacrm.entity.orm.Lead;
+import br.com.clientejacrm.entity.orm.Usuario;
 import br.com.clientejacrm.repository.InteracaoRepository;
 import br.com.clientejacrm.repository.LeadRepository;
 import br.com.clientejacrm.whatsapp.WhatsAppService;
@@ -23,6 +24,9 @@ public class LeadService {
     InteracaoRepository interacaoRepository;
 
     @Inject
+    UsuarioService usuarioService;
+
+    @Inject
     WhatsAppService whatsappService;
 
     public List<Lead> listAll() {
@@ -38,12 +42,13 @@ public class LeadService {
     }
 
     @Transactional
-    public Lead create(Lead lead, String  token) {
-        System.out.println(token);
+    public Lead create(Lead lead) {
+      Usuario usuario = usuarioService.getUsuarioLogado();
         lead.setDataCriacao(LocalDateTime.now());
         lead.setProximoFollowUp(LocalDateTime.now());
+        lead.setUsuario(usuario);
         leadRepository.persist(lead);
-        whatsappService.sendText(lead.getTelefone(), "Olá, bem-vindo!");
+        //whatsappService.sendText(lead.getTelefone(), "Olá, bem-vindo!");
         return lead;
     }
 

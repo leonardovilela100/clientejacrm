@@ -50,8 +50,7 @@ public class LeadResource {
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     public Response create(Lead lead, @Context UriInfo uriInfo) {
-      //  String token = jwt.getClaim(Claims.upn.name());
-        Lead created = leadService.create(lead, "token");
+        Lead created = leadService.create(lead);
         URI uri = uriInfo.getAbsolutePathBuilder().path(created.getId().toString()).build();
         return Response.created(uri).entity(created).build();
     }
