@@ -32,6 +32,12 @@ public class Cliente {
     @Column(name = "telefone", length = 20)
     private String telefone;
 
+    @Column(name = "empresa", length = 100)
+    private String empresa;
+
+    @Column(name = "cnpj", length = 20)
+    private String cnpj;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo")
     private TipoContato tipo;

@@ -24,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.Singular;
 
 @Data
 @Builder
@@ -37,10 +38,10 @@ public class Lead {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nome", nullable = false,  length = 50)
+    @Column(name = "nome",  length = 50)
     private String nome;
 
-    @Column(name = "email", nullable = false,  length = 50)
+    @Column(name = "email", length = 50)
     private String email;
 
     @Column(name = "telefone", nullable = false,  length = 20)
@@ -61,6 +62,7 @@ public class Lead {
     private LocalDateTime proximoFollowUp;
 
     @OneToMany(mappedBy = "lead", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Builder.Default
     private List<Interacao> interacoes = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
