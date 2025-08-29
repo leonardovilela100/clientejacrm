@@ -197,6 +197,11 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>11.11.2</version>
+                <configuration>
+                    <configFiles>
+                        <configFile>src/main/resources/flyway.properties</configFile>
+                    </configFiles>
+                </configuration>
             </plugin>
         </plugins>
     </build>
