@@ -6,4 +6,8 @@ import jakarta.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class LeadRepository implements PanacheRepository<Lead> {
+
+    public Lead findByTelefone(String telefone) {
+        return find("telefone", telefone).firstResult();
+    }
 }

@@ -44,7 +44,7 @@ public class Lead {
     @Column(name = "email", length = 50)
     private String email;
 
-    @Column(name = "telefone", nullable = false,  length = 20)
+    @Column(name = "telefone", nullable = false,  length = 20, unique = true)
     private String telefone;
 
     @Enumerated(EnumType.STRING)

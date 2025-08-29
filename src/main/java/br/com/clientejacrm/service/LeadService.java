@@ -43,12 +43,16 @@ public class LeadService {
 
     @Transactional
     public Lead create(Lead lead) {
+        if(leadRepository.findByTelefone(lead.getTelefone()) != null) {
+            throw new IllegalArgumentException("Telefone já cadastrado");
+        }
+
       Usuario usuario = usuarioService.getUsuarioLogado();
         lead.setDataCriacao(LocalDateTime.now());
         lead.setProximoFollowUp(LocalDateTime.now());
         lead.setUsuario(usuario);
         leadRepository.persist(lead);
-        //whatsappService.sendText(lead.getTelefone(), "Olá, bem-vindo!");
+        whatsappService.sendText(lead.getTelefone(), "Olá, bem-vindo!");
         return lead;
     }
 
