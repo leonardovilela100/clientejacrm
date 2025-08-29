@@ -1,2 +1,3 @@
-INSERT INTO usuario (nome, email, telefone, email_verificado, senha_hash, status)
-VALUES ('Leonardo2', 'jubileu@gmail.com', '349918127415', false, 'dGVzdGU=', 'ATIVO');
+INSERT INTO public.usuario (id, created_at, email, email_verificado, nome, senha_hash, status, telefone, updated_at)
+VALUES(1,  now(), 'jubileu@gmail.com', false, 'Leonardo2', 'dGVzdGU=', 'ATIVO', '349918127415',  now());
+
