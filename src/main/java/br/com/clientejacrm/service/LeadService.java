@@ -43,11 +43,11 @@ public class LeadService {
 
     @Transactional
     public Lead create(Lead lead) {
-        if(leadRepository.findByTelefone(lead.getTelefone()) != null) {
+        Usuario usuario = usuarioService.getUsuarioLogado();
+        if(leadRepository.findByTelefone(lead.getTelefone(), usuario) != null) {
             throw new IllegalArgumentException("Telefone já cadastrado");
         }
 
-      Usuario usuario = usuarioService.getUsuarioLogado();
         lead.setDataCriacao(LocalDateTime.now());
         lead.setProximoFollowUp(LocalDateTime.now());
         lead.setUsuario(usuario);
