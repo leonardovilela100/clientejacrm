@@ -1,22 +1,24 @@
-package br.com.clientejacrm.whatsapp;
+package br.com.clientejacrm.dto;
 
 
-public class MessageRequest {
+
+public class MessageRequestDto {
 
     private String number;
     private String message;
 
-    public MessageRequest() {
+    public MessageRequestDto() {
     }
 
-    public MessageRequest(String number, String message) {
+    public MessageRequestDto(String number, String message) {
         this.number = number;
         this.message = message;
     }
 
-    public static MessageRequest text(String number, String message) {
-        return new MessageRequest(number, message);
+    public static MessageRequestDto text(String number, String message) {
+        return new MessageRequestDto(number, message);
     }
+
 
     public String getNumber() {
         return number;

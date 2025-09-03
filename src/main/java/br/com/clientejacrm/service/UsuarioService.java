@@ -1,7 +1,7 @@
 package br.com.clientejacrm.service;
 
 
-import br.com.clientejacrm.entity.enums.StatusUsuario;
+import br.com.clientejacrm.enums.StatusUsuario;
 import br.com.clientejacrm.entity.orm.Usuario;
 import br.com.clientejacrm.repository.UsuarioRepository;
 import jakarta.enterprise.context.ApplicationScoped;

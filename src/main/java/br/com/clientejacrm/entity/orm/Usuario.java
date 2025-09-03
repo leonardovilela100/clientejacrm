@@ -1,6 +1,6 @@
 package br.com.clientejacrm.entity.orm;
 
-import br.com.clientejacrm.entity.enums.StatusUsuario;
+import br.com.clientejacrm.enums.StatusUsuario;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;

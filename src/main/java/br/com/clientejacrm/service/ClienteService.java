@@ -1,6 +1,6 @@
 package br.com.clientejacrm.service;
 
-import br.com.clientejacrm.entity.enums.TipoContato;
+import br.com.clientejacrm.enums.TipoContato;
 import br.com.clientejacrm.entity.orm.Cliente;
 import br.com.clientejacrm.repository.ClienteRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -60,4 +60,6 @@ public class ClienteService {
             throw new NotFoundException();
         }
     }
+
+
 }

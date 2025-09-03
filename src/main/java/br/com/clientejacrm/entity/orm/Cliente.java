@@ -1,7 +1,7 @@
 package br.com.clientejacrm.entity.orm;
 
-import br.com.clientejacrm.entity.enums.CanalContato;
-import br.com.clientejacrm.entity.enums.TipoContato;
+import br.com.clientejacrm.enums.CanalContato;
+import br.com.clientejacrm.enums.TipoContato;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

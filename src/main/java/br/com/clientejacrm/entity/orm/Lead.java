@@ -1,7 +1,7 @@
 package br.com.clientejacrm.entity.orm;
 
-import br.com.clientejacrm.entity.enums.Origem;
-import br.com.clientejacrm.entity.enums.Status;
+import br.com.clientejacrm.enums.Origem;
+import br.com.clientejacrm.enums.Status;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +24,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Singular;
 
 @Data
 @Builder

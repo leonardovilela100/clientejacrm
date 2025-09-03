@@ -1,6 +1,6 @@
 package br.com.clientejacrm.resource;
 
-import br.com.clientejacrm.entity.enums.TipoContato;
+import br.com.clientejacrm.enums.TipoContato;
 import br.com.clientejacrm.entity.orm.Cliente;
 import br.com.clientejacrm.service.ClienteService;
 import jakarta.inject.Inject;

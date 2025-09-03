@@ -1,4 +1,4 @@
-package br.com.clientejacrm.entity.enums;
+package br.com.clientejacrm.enums;
 
 public enum Role {
     ADMIN, GERENTE, VENDEDOR, SUPORTE, LEITURA

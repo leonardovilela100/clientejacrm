@@ -1,5 +1,6 @@
-package br.com.clientejacrm.whatsapp;
+package br.com.clientejacrm.restClient;
 
+import br.com.clientejacrm.dto.MessageRequestDto;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -14,5 +15,6 @@ public interface WhatsAppClient {
     @Path("/send-message")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    void sendMessage(MessageRequest request);
+    void sendMessage(MessageRequestDto request);
+
 }

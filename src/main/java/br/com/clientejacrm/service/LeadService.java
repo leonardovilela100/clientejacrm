@@ -5,7 +5,6 @@ import br.com.clientejacrm.entity.orm.Lead;
 import br.com.clientejacrm.entity.orm.Usuario;
 import br.com.clientejacrm.repository.InteracaoRepository;
 import br.com.clientejacrm.repository.LeadRepository;
-import br.com.clientejacrm.whatsapp.WhatsAppService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -27,7 +26,7 @@ public class LeadService {
     UsuarioService usuarioService;
 
     @Inject
-    WhatsAppService whatsappService;
+    WhatsappService whatsappService;
 
     public List<Lead> listAll() {
         return leadRepository.listAll();
