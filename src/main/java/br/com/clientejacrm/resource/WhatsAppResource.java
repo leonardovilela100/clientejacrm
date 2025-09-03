@@ -2,6 +2,7 @@ package br.com.clientejacrm.resource;
 
 import br.com.clientejacrm.whatsapp.MessageRequest;
 import br.com.clientejacrm.whatsapp.WhatsAppService;
+import br.com.clientejacrm.whatsapp.ContactRequest;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;
@@ -22,6 +23,12 @@ public class WhatsAppResource {
     @Path("/send-message")
     public Response sendMessage(MessageRequest request) {
         service.sendText(request.getNumber(), request.getMessage());
+        return Response.accepted().build();
+    }
+
+    @POST
+    @Path("/contact")
+    public Response receiveContact(ContactRequest request) {
         return Response.accepted().build();
     }
 }
